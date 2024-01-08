@@ -1,0 +1,201 @@
+{
+	"version" : "1.0",
+	"meli_get_access_token" : {
+		"HTTP" : {
+			"schemeHTTP" : "https://" ,
+			"baseHTTP" :  "api.mercadolibre.com/oauth/token",
+			"extraHTTP" : "",
+			"method" : "post" ,
+			"headers" : {
+				"Accept" : "*/*" ,
+				"Content-Type" : "x-www-form-urlencoded"   
+			}
+		}
+	},
+	"meli_get_seller_orders" : {
+		"HTTP" : {
+			"schemeHTTP" : "https://" ,
+			"baseHTTP" :  "api.mercadolibre.com/orders/search",
+			"extraHTTP" : "",
+			"method" : "get" ,
+			"headers" : {
+				"Authorization": ""
+			}
+		}
+	},
+	"meli_get_seller_reputation" : {
+		"HTTP" : {
+			"schemeHTTP" : "https://" ,
+			"baseHTTP" :  "api.mercadolibre.com/users/",
+			"extraHTTP" : "",
+			"method" : "get" ,
+			"headers" : {
+				"Authorization": ""
+			}
+		}
+	},
+	"meli_get_shipping_nfo" : {
+		"HTTP" : {
+			"schemeHTTP" : "https://" ,
+			"baseHTTP" :  "api.mercadolibre.com/shipments/",
+			"extraHTTP" : "",
+			"method" : "get" ,
+			"headers" : {
+				"Authorization": ""
+			}
+		}
+	},
+	"datapipeline_meli_functions" : {
+		"HTTP" : {
+			"download_path" : "./file.xlsx",
+			"file_url": "Documents/FechamentoFinanceiro/regras_faturamento.xlsx",
+			"oneD_url" : "https://jetretailservices-my.sharepoint.com/personal/lucio_lee_seliafullservice_com_br/"
+		},
+
+		"nfo" : {
+			"runFileName" : "datapipeline_meli_functions",
+			"runLocation" : "AWS_TBD",
+			"runQueryName" : "datapipeline_meli_functions",
+			"runInputLocation" : "TBD",
+			"runOutputSuccessTable" : "datapipeline_meli_functions",
+			"runOutputAttentionTable" : "",
+			"retryOption" : "ok to retry anytime",
+			"hasIdentifier" : "n",
+			"identifier" : ""
+		},
+
+		"resultSuccessTable" : {
+			"meli_shipments_summary" : "meli_shipments_summary", 
+			"meli_payments_summary" : "meli_payments_summary",
+			"meli_reputation_summary" : "meli_reputation_summary",
+			"meli_payments_raw" : "zmeli_testpayments_raw",
+			"meli_shipments_raw" : "zmeli_testshipments_raw",
+			"meli_reputation_raw" : "zmeli_testreputation_raw",
+			"meli_newTokens" : "nfo_meliTokenTable"
+		},
+
+		"columnsType_dict" : {
+			"meli_shipments_summary": {				
+				"result_estimated_delivery_limit_date" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"result_estimated_handling_limit_date" : {
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				}
+			},
+			"meli_payments_summary": {
+				"result_payment_approvation_date" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				}
+			},
+			"meli_payments_raw": {
+				"date_approved" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"date_last_modified" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"date_created" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				}
+			},
+			"meli_shipments_raw": {
+				"last_updated" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"date_created" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"date_first_printed" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"status_history_date_shipped" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"status_history_date_delivered" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"status_history_date_first_visit" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"status_history_date_not_delivered" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"status_history_date_cancelled" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"status_history_date_handling" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"status_history_date_ready_to_ship" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"shipping_option_estimated_delivery_final_date" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"shipping_option_buffering_date" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"shipping_option_estimated_delivery_limit_date" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"shipping_option_estimated_delivery_time_date" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"shipping_option_estimated_delivery_time_pay_before" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"shipping_option_estimated_delivery_time_offset_shipping" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"shipping_option_estimated_delivery_extended" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				},
+				"receiver_address_geolocation_last_updated" : { 
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				}
+			},
+			"meli_reputation_raw" :{
+				"result_estimated_handling_limit_date" : {
+					"type":"to_datetime",
+					"format" : "ISO8601"
+				}
+			}
+		}
+	},
+
+	"errorDescription" : {
+		"refresh_token_expired":"couldnt donwload from OneD",
+		"couldnt_get_access_token":"Failed to create dataFrame",
+		"InsertAzureDB":"Failed to insert in AzureDB"
+	},
+	"errorSuggestedProcedure" :{
+		"refresh_token_expired":"check external server" ,
+		"couldnt_get_access_token":"check Excel File",
+		"InsertAzureDB": "check for errors in Excel File"
+	}
+}
