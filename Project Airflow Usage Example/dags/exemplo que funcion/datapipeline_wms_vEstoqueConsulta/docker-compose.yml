@@ -1,0 +1,16 @@
+version: '3.8'
+
+networks:
+  socket_proxy:
+    external: true
+
+services:
+  wms_function_vestoqueconsulta:
+    image: wms_function_vestoqueconsulta
+    environment:
+      - DOCKER_HOST=tcp://socket-proxy:2375
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - socket_proxy

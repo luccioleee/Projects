@@ -1,0 +1,34 @@
+{
+	"wms_function_vEstoqueConsulta":{
+		"schemeHTTP":"http://",
+		"baseHTTP":"18.229.13.75:7436/datasnap/rest/tsm/Getfuncao/",
+		"extraHTTP": "%7B%22nome%22:%22v_estoque_consulta%22%7D",
+		"method" : "get",
+		"headers": {
+			"Authorization":"Basic U0VMSUFCSTpTRUxJQTIwMjEh"
+		},
+
+		"dateColumns" :{
+			"datavencimento":"%d/%m/%Y"
+		},
+
+		"runFileName" : "wms_function_vEstoqueConsulta",
+		"runQueryName" : "vEstoqueConsulta",
+		"runInputLocation" : "WMS_API",
+		"runOutputSuccessTable" : "wms_vEstoqueConsutaSuccess",
+		"runOutputAttentionTable" : "wms_vEstoqueConsutaAttention",
+		"runLocation" : "AWS_batch",
+		
+		"errorDescriptionServer" : "not used" ,
+		"errorDescriptionGeneric" : "Couldnt normalize the response json dataframe" ,
+		"errorDescriptionInsertAzureDB" : "Couldnt insert in successTable",
+
+		"errorSuggestedProcedureServer" : "check external server" ,
+		"errorSuggestedProcedureGeneric" : "check answer from server" ,
+		"errorSuggestedProcedureInsertAzureDB" : "check for tuples in dataframe" ,
+		"retryOption" : "ok to retry anytime",
+
+        "resultSuccessTable" : "wms_vEstoqueConsultaSuccess",
+        "resultAttentionTable" : "wms_vEstoqueConsutaAttention"
+	}
+}

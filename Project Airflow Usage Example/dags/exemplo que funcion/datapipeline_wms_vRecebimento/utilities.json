@@ -1,0 +1,38 @@
+{
+	"wms_function_vRecebimento":{
+		"schemeHTTP":"http://",
+		"baseHTTP":"18.229.13.75:7436/datasnap/rest/tsm/Getfuncao/",
+		"extraHTTP": "%7B%22nome%22:%22v_recebimento%22%7D",
+		"method" : "get",
+		"headers": {
+			"Authorization":"Basic U0VMSUFCSTpTRUxJQTIwMjEh"
+		},
+
+		"dateColumns" : {
+			"dataemissao" : "%d/%m/%Y",
+			"datainclusao" : "%d/%m/%Y %H:%M:%S", 
+			"docadatainclusao" : "%d/%m/%Y %H:%M:%S", 
+			"datainicioconferencia" : "%d/%m/%Y %H:%M:%S", 
+			"datafinalizacaoconferencia" : "%d/%m/%Y %H:%M:%S"
+		},
+
+		"runFileName" : "wms_function_vRecebimento",
+		"runQueryName" : "vRecebimento",
+		"runInputLocation" : "WMS_API",
+		"runOutputSuccessTable" : "wms_vRecebimentoSuccess",
+		"runOutputAttentionTable" : "wms_vRecebimentoAttention",
+		"runLocation" : "AWS_batch",
+		
+		"errorDescriptionServer" : "not used" ,
+		"errorDescriptionGeneric" : "Couldnt normalize the response json dataframe" ,
+		"errorDescriptionInsertAzureDB" : "Couldnt insert in successTable",
+
+		"errorSuggestedProcedureServer" : "check external server" ,
+		"errorSuggestedProcedureGeneric" : "check answer from server" ,
+		"errorSuggestedProcedureInsertAzureDB" : "check for tuples in dataframe" ,
+		"retryOption" : "ok to retry anytime",
+
+        "resultSuccessTable" : "wms_vRecebimentoSuccess",
+        "resultAttentionTable" : "wms_vRecebimentoAttention"
+	}
+}
