@@ -1,0 +1,178 @@
+{
+	"version" : "1.0",
+	"mill_getToken":{
+		"HTTP": {
+			"schemeHTTP":"https://",
+			"baseHTTP":"millennium.selia.com.br/API/",
+			"extraHTTP": "login",
+			"method" : "get",
+			"headers": {
+				"wts-authorization":"LUCIO.LEE/1234",
+				"wts-licencetype": "API"
+			}
+		}
+	},	
+
+	"mill_fRelFechamento":{
+		"HTTP" : {
+			"schemeHTTP":"https://",
+			"baseHTTP":"millennium.selia.com.br/API/",
+			"extraHTTP": "MILLENIUM!SELIA.VIEWS.REL_FECHAMENTO_analitico",
+			"method" : "get",
+			"headers": {
+				"wts-session":"",
+				"wts-licencetype": "API"
+			},
+	
+			"params" :{
+				"$format" : "json"
+			}
+		},
+		
+		"nfo" : {
+			"runFileName" : "mill_fRelFechamento",
+			"runQueryName" : "fRelFechamento",
+			"runInputLocation" : "millennium_API",
+			"runOutputSuccessTable" : "mill_fRelFechamentoSucess",
+			"runOutputAttentionTable" : "mill_fRelFechamentoAttention",
+			"runLocation" : "AWS_TBD",
+			"retryOption" : "ok to retry anytime",
+			"hasIdentifier" : "n",
+			"identifier" : ""
+		},
+		
+        "resultSuccessTable" :{
+			"mill_fRelFechamento" : "mill_fRelFechamentoSucess"
+		},
+
+        "resultAttentionTable" : {
+			"mill_fRelFechamento": "mill_fRelFechamentoAttention"
+		},
+
+		"columnsType_dict" : {
+			"peso" : {
+				"type" : "to_numeric", 
+				"format" : "0,0"
+			},
+			"recebimento" : {
+				"type" : "to_numeric",
+				"format" : "0,0"
+			},
+			"expedicao" : {
+				"type" : "to_numeric",
+				"format" : "0,0"
+			},
+			"devolucao" : {
+				"type" : "to_numeric",
+				"format" : "0,0"
+			}
+		}
+	},
+
+	"processing_FechamentoFinanceiro" : {
+		"HTTP" : {
+			"download_path" : "./file.xlsx",
+			"file_url": "Documents/FechamentoFinanceiro/regras_faturamento.xlsx",
+			"oneD_url" : "https://jetretailservices-my.sharepoint.com/personal/lucio_lee_seliafullservice_com_br/"
+		},
+
+		"nfo" : {
+			"runFileName" : "processing_FechamentoFinanceiro",
+			"runLocation" : "AWS_TBD",
+			"runQueryName" : "processing_FechamentoFinanceiro",
+			"runInputLocation" : "TBD",
+			"runOutputSuccessTable" : "processing_FechamentoFinanceiro",
+			"runOutputAttentionTable" : "",
+			"retryOption" : "ok to retry anytime",
+			"hasIdentifier" : "n",
+			"identifier" : ""
+		},
+
+		"resultSuccessTable" : {
+			"processing_FechamentoFinanceiro" : "processing_FechamentoFinanceiro",
+			"processing_FechamentoAnalyticReport" : "processing_FechamentoAnalyticReport"
+		},
+
+		"columnsType_dict" : {
+			"processing_FechamentoFinanceiro": {				
+				"dataconsulta" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},
+				"dataperiodoinicio" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},		
+				"dataperiodofim" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},		
+				"datapico" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},				
+				"quantidade" : { 
+					"type":"to_numeric",
+					"format" : "0,0"
+				},				
+				"valortotal" : { 
+					"type":"to_numeric",
+					"format" : "0,0"
+				},				
+				"preco" : { 
+					"type":"to_numeric",
+					"format" : "0,0"
+				},				
+				"valorfinal" : { 
+					"type":"to_numeric",
+					"format" : "0,0"
+				},				
+				"valor_com_markup" : { 
+					"type":"to_numeric",
+					"format" : "0,0"
+				}
+			},
+			"processing_FechamentoAnalyticReport": {				
+				"GMV_DATA_NF" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},
+				"ARMZ_DATA_INCLUSAO" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},
+				"ESTDIA_DATA_MOVIMENTO" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},
+				"FRTCTE_DATA_CTE" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},
+				"FRTCOR_DATA_POSTAGEM" : { 
+					"type":"to_datetime",
+					"format" : "%d/%m/%Y"
+				},
+				"FRTCTE_VALOR_FRETE" : { 
+					"type":"to_numeric",
+					"format" : "0.0"
+				}
+			}
+		}
+	},
+
+	"errorDescription" : {
+		"OneD":"couldnt donwload from OneD",
+		"FailedDataFrame":"Failed to create dataFrame",
+		"failedDataFrame_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing",
+		"InsertAzureDB":"Failed to insert in AzureDB",
+		"insertAzureDB_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing"
+	},
+	"errorSuggestedProcedure" :{
+		"OneD":"check external server" ,
+		"FailedDataFrame":"check Excel File",
+		"failedDataFrame_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing" , 
+		"InsertAzureDB": "check for errors in Excel File",
+		"insertAzureDB_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing"
+	}
+}
