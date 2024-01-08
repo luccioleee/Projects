@@ -1,0 +1,7 @@
+numpy==1.25.0
+pandas==2.0.3
+pyodbc==4.0.39
+Requests==2.31.0
+SQLAlchemy==1.4.48
+onedrivesdk==2.0.1
+mysql-connector-python==8.1.0

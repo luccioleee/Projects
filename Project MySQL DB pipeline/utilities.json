@@ -1,0 +1,88 @@
+{
+	"version" : "1.0",
+	"nps_emailNps" : {
+		"HTTP" : {
+			"download_path" : "",
+			"file_url": "",
+			"oneD_url" : ""
+		},
+
+		"nfo" : {
+			"runFileName" : "nps_emailNps",
+			"runQueryName" : "nps_emailNps",
+			"runInputLocation" : "nps_DB",
+			"runOutputSuccessTable" : "emails_nps_millennium, respostas_nps_millennium",
+			"runOutputAttentionTable" : "",
+			"runLocation" : "AWS_batch",
+			"retryOption" : "ok to retry anytime",
+			"hasIdentifier" : "y",
+			"identifier" : "auditId"
+		},
+
+		"queries" : {
+			"nps_respostasNps" : "get_repostasNpsData",
+			"nps_emailNps" : "get_emailsNpsData"
+		},
+
+		"resultTempSuccessTable" : {
+			"nps_emailNps" : "temp_emails_nps_millenniumSuccess",
+			"nps_respostasNps" : "temp_respostas_nps_millenniumSuccess"
+		},
+
+		"resultTempAttentionTable" : {
+			"nps_emailNps" : "temp_emails_nps_millenniumAttention",
+			"nps_respostasNps" : "temp_respostas_nps_millenniumAttention"
+		},
+
+		"resultSuccessTable" : {
+			"nps_emailNps" : "emails_nps_millennium",
+			"nps_respostasNps" : "respostas_nps_millennium"
+		},
+
+		"columnsType_dict" : {
+			"nps_emailNps": {				
+				"ID_NPS" : { 
+					"type":"to_numeric",
+					"format" : ""
+				},
+				"DATA_CRIACAO" : { 
+					"type":"to_datetime",
+					"format" : "%Y/%m/%d"
+				}
+			},
+			"nps_respostasNps" : {
+				"ID_NPS" : { 
+					"type":"to_numeric",
+					"format" : ""
+				},
+				"SCORE" : { 
+					"type":"to_numeric",
+					"format" : ""
+				},
+				"RECOMENDA" : { 
+					"type":"to_numeric",
+					"format" : ""
+				},
+				"NAVEGACAO" : { 
+					"type":"to_numeric",
+					"format" : ""
+				},
+				"ENTREGA" : { 
+					"type":"to_numeric",
+					"format" : ""
+				},
+				"ATENDIMENTO" : { 
+					"type":"to_numeric",
+					"format" : ""
+				}
+			}
+		}
+	},
+
+	"errorDescription" : {
+		"generic":"generic error description, please investigate"
+	},
+	"errorSuggestedProcedure" :{
+		"generic":"generic error description, please investigate"
+	}
+}
