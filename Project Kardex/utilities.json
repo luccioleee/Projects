@@ -1,0 +1,103 @@
+{
+	"version" : "1.0",
+	"dataprocessing_fechamentonfs":{
+		"HTTP" : {
+			"schemeHTTP":"",
+			"baseHTTP":"",
+			"extraHTTP": "",
+			"method" : "",
+			"headers": {
+				"wts-session":"",
+				"wts-licencetype": ""
+			},
+	
+			"params" :{
+				"$format" : ""
+			}
+		},
+		
+		"nfo" : {
+			"runFileName" : "dataprocessing_fechamentoNFS",
+			"runQueryName" : "",
+			"runInputLocation" : "millennium_DB+Idworks_API",
+			"runOutputSuccessTable" : "processing_fechamentoNFS_idworks",
+			"runOutputAttentionTable" : "processing_fechamentonfsSuccessAttention_idworks",
+			"runLocation" : "AWS_TBD",
+			"retryOption" : "ok to retry anytime",
+			"hasIdentifier" : "n",
+			"identifier" : ""
+		},
+		
+        "resultSuccessTable" :{
+			"dataprocessing_fechamentonfs" : "testprocessing_fechamentoNFS_idworks"
+		},
+
+        "resultAttentionTable" : {
+			"dataprocessing_fechamentonfs": "processing_fechamentonfsAttention_idworks"
+		},
+
+		"columnsType_dict" : {
+			"default" : {
+				"type" : "to_numeric", 
+				"format" : "0,0"
+			}
+		}
+	},
+	"idworks_signin_function":{
+		"HTTP" : {
+			"schemeHTTP":"https://",
+			"baseHTTP":"selia.api-idworks.com.br/",
+			"extraHTTP": "1.0/user/signin/local",
+			"method" : "post",
+			"headers": {
+				"Content-Type": "application/json"
+			}
+		}
+	},
+	"idworks_inboundquery_function" :{
+		"HTTP" : {
+			"schemeHTTP":"https://",
+			"baseHTTP":"selia.api-idworks.com.br/",
+			"extraHTTP": "1.0/sku/movement",
+			"method" : "get",
+			"headers": {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer "
+			},
+			"params": {
+				"IDTypeMovement" : "0",
+				"DescriptionTypeMovement" : "Entrada"
+			}
+		}
+	},
+	"idworks_outboundquery_function" :{
+		"HTTP" : {
+			"schemeHTTP":"https://",
+			"baseHTTP":"selia.api-idworks.com.br/",
+			"extraHTTP": "1.0/sku/movement",
+			"method" : "get",
+			"headers": {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer "
+			},
+			"params": {
+				"IDTypeMovement" : "1",
+				"DescriptionTypeMovement" : "Saída"
+			}
+		}
+	},
+	"errorDescription" : {
+		"OneD":"couldnt donwload from OneD",
+		"FailedDataFrame":"Failed to create dataFrame",
+		"failedDataFrame_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing",
+		"InsertAzureDB":"Failed to insert in AzureDB",
+		"insertAzureDB_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing"
+	},
+	"errorSuggestedProcedure" :{
+		"OneD":"check external server" ,
+		"FailedDataFrame":"check Excel File",
+		"failedDataFrame_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing" , 
+		"InsertAzureDB": "check for errors in Excel File",
+		"insertAzureDB_datapipeline_fRelFechamento" : "Error while loading the fRelFechamento in fechamento processing"
+	}
+}
