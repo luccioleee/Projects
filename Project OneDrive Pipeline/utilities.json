@@ -1,0 +1,95 @@
+{
+	"version" : "1.0",
+	"oneD_utilities" : {
+		"HTTP" : {
+			"download_path" : "./file.xlsx",
+			"file_url": "Documents/FechamentoFinanceiro/regras_faturamento.xlsx",
+			"oneD_url" : "https://jetretailservices-my.sharepoint.com/personal/lucio_lee_seliafullservice_com_br/"
+		},
+
+		"nfo" : {
+			"runFileName" : "oneD_lFechamento",
+			"runLocation" : "AWS_TBD",
+			"runQueryName" : "oneD_lFechamento",
+			"runInputLocation" : "TBD",
+			"runOutputSuccessTable" : "regrasGMVFechamento, regrasOtherFechamento, lFechamentoFiliais, nomenclarutraARMZFechamento, valoresFormulario, regraMarkupTransportadoras, faturaCorreios",
+			"runOutputAttentionTable" : "",
+			"retryOption" : "ok to retry anytime",
+			"hasIdentifier" : "n",
+			"identifier" : ""
+		},
+
+		"resultSuccessTable" : {
+			"regrasGMV" : "OneD_regrasGMVFechamento",
+			"regrasOther" : "OneD_regrasOtherFechamento",
+			"filiais" :"OneD_lFechamentoFiliais",
+			"nomenclaturaARMZ" : "OneD_nomenclaturaARMZFechamento",
+			"valoresFormulario" : "OneD_valoresFormulario",
+			"regraMarkupTransportadoras" : "OneD_regraMarkupTransportadoras",
+			"faturaCorreios" : "OneD_faturaCorreios",
+			"regraMarkupFRTClientes" : "OneD_regraMarkupFRTClientes"
+		},
+
+		"columnsType_dict" : {
+			"regrasGMV": {				
+				"column" : { 
+					"type":"",
+					"format" : ""
+				}
+			},
+			"regrasOther" : {
+				"price" : { 
+					"type":"to_numeric",
+					"format" : "0,0"
+				}
+			},
+			"filiais" : {
+				"column" : { 
+					"type":"",
+					"format" : ""
+				}
+			},
+			"nomenclaturaARMZ" : {
+				"column" : { 
+					"type":"",
+					"format" : ""
+				}
+			},
+			"valoresFormulario" : {
+				"column" : { 
+					"type":"",
+					"format" : ""
+				}
+			},
+			"regraMarkupTransportadoras" : {
+				"column" : { 
+					"type":"",
+					"format" : ""
+				}
+			},
+			"faturaCorreios" : {
+				"column" : { 
+					"type":"",
+					"format" : ""
+				}
+			},
+			"regraMarkupFRTClientes" : {
+				"column" : { 
+					"type":"",
+					"format" : ""
+				}
+			}
+		}
+	},
+
+	"errorDescription" : {
+		"OneD":"couldnt donwload from OneD",
+		"FailedDataFrame":"Failed to create dataFrame",
+		"InsertAzureDB":"Failed to insert in AzureDB"
+	},
+	"errorSuggestedProcedure" :{
+		"OneD":"check external server" ,
+		"FailedDataFrame":"check Excel File",
+		"InsertAzureDB": "check for errors in Excel File"
+	}
+}
